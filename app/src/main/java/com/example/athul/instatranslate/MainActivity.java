@@ -1,8 +1,10 @@
 package com.example.athul.instatranslate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -105,6 +107,32 @@ public class MainActivity extends AppCompatActivity {
         mImageView.setImageBitmap(bitmap);
     }
 
+    private static int getRotationFromCamera(Context context, Uri imageFile) {
+        int rotate = 0;
+        try {
+
+            context.getContentResolver().notifyChange(imageFile, null);
+            ExifInterface exif = new ExifInterface(imageFile.getPath());
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotate = 270;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotate = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotate = 90;
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rotate;
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -112,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 //            Bitmap imageBitmap = (Bitmap) extras.get("data");
 //            mImageView.setImageBitmap(imageBitmap);
             setPic();
+
         }
     }
 
@@ -127,12 +156,15 @@ public class MainActivity extends AppCompatActivity {
 
             SparseArray<TextBlock> item = textRecognizer.detect(frame);
 
-            StringBuilder text = new StringBuilder(1000);
+            StringBuilder text = new StringBuilder();
 
             for (int i = 0; i < item.size(); i++) {
                 TextBlock myitems = item.valueAt(i);
                 text.append(myitems.getValue());
-                text.append("\n");
+                if(myitems.getValue().equals('\n')) {
+                    text.replace(i,i+1," ");
+                }
+                text.append(" ");
             }
             Intent intent = new Intent(MainActivity.this, NewActivity.class);
             intent.putExtra("data", text.toString());
