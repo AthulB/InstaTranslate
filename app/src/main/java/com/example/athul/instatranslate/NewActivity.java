@@ -37,7 +37,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class NewActivity extends AppCompatActivity {
     TextView textView;
     TextView textView1;
-    String text;
+    String text,text1;
     Spinner spinner;
     String item;
     String [] lang = {"Bulgarian","Dutch","English","German","Greek","Gujarati","Hindi","Italian","Marathi","Malayalam","Russian","Spanish",};
@@ -51,7 +51,8 @@ public class NewActivity extends AppCompatActivity {
         textView1 = (TextView) findViewById(R.id.textView2);
 
         text = getIntent().getExtras().getString("data");
-        textView.setText(text);
+        text1 = text.replaceAll("\\n"," ");
+        textView.setText(text1);
         spinner = (Spinner)findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,lang);
         spinner.setAdapter(adapter);
@@ -98,7 +99,7 @@ public class NewActivity extends AppCompatActivity {
 
     public void translate(View view) {
         textView1.setText("Your Translation will be available soon......");
-        new JsonTask().execute("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180309T152246Z.4f19a932b29b98f4.e5ce75fa97145270e537e8ecc2d3aa80ed4d1631&text="+text+"&lang=en-"+item);
+        new JsonTask().execute("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180309T152246Z.4f19a932b29b98f4.e5ce75fa97145270e537e8ecc2d3aa80ed4d1631&text="+text1+"&lang=en-"+item);
     }
 
     class JsonTask extends AsyncTask<String, String, String> {
