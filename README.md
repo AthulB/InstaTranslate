@@ -17,6 +17,7 @@ NOTE: all the Text in the Image is converted to Text.
 
 
 Usage:
+
 	1. In the first page, we have a option to Capture a Image or to Import the Image from Gallery. As per the need we can click on respective buttons.
 	
 	2. If we select Camera then, it will open the Camera of respective mobile.
