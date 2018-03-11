@@ -181,14 +181,13 @@ public class MainActivity extends AppCompatActivity {
 
             StringBuilder text = new StringBuilder();
 
-            for (int i = 0; i < item.size(); i++) {
-                TextBlock myitems = item.valueAt(i);
+            //for (int i = 0; i < item.size(); i++) {
+//                if(item.valueAt(0).equals('\n')) {
+//                    text.replace(i,i+1," ");
+//                }
+                TextBlock myitems = item.valueAt(0);
                 text.append(myitems.getValue());
-                if(myitems.getValue().equals('\n')) {
-                    text.replace(i,i+1," ");
-                }
-                text.append(" ");
-            }
+            //}
             Intent intent = new Intent(MainActivity.this, NewActivity.class);
             intent.putExtra("data", text.toString());
             startActivity(intent);
