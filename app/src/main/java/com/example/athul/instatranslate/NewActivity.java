@@ -3,18 +3,14 @@ package com.example.athul.instatranslate;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -105,6 +101,7 @@ public class NewActivity extends AppCompatActivity {
     public void translate(View view) {
         textView1.setText("Your Translation will be available soon......");
         new JsonTask().execute("https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180309T152246Z.4f19a932b29b98f4.e5ce75fa97145270e537e8ecc2d3aa80ed4d1631&text="+text1+"&lang=en-"+item);
+
     }
 
     class JsonTask extends AsyncTask<String, String, String> {

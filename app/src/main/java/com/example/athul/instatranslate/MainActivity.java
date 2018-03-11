@@ -6,14 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
@@ -175,22 +174,22 @@ public class MainActivity extends AppCompatActivity {
 //        if (!textRecognizer.isOperational()) {
 //            Toast.makeText(getApplicationContext(), "Couldn't load the Text", Toast.LENGTH_SHORT).show();
 //        } else {
-            Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+        Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
-            SparseArray<TextBlock> item = textRecognizer.detect(frame);
+        SparseArray<TextBlock> item = textRecognizer.detect(frame);
 
-            StringBuilder text = new StringBuilder(1000);
+        StringBuilder text = new StringBuilder(1000);
 
-            //for (int i = 0; i < item.size(); i++) {
+        //for (int i = 0; i < item.size(); i++) {
 //                if(item.valueAt(0).equals('\n')) {
 //                    text.replace(i,i+1," ");
 //                }
-                TextBlock myitems = item.valueAt(0);
-                text.append(myitems.getValue());
-            //}
-            Intent intent = new Intent(MainActivity.this, NewActivity.class);
-            intent.putExtra("data", text.toString());
-            startActivity(intent);
+        TextBlock myitems = item.valueAt(0);
+        text.append(myitems.getValue());
+        //}
+        Intent intent = new Intent(MainActivity.this, NewActivity.class);
+        intent.putExtra("data", text.toString());
+        startActivity(intent);
 
 //        }
     }
