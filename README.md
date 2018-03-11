@@ -1,6 +1,6 @@
-InstaTranslate
+#InstaTranslate
 
-Summary:
+##Summary:
 Uses Google API for OCR.
 Uses Yandex API for Translation of text.
 
@@ -8,7 +8,7 @@ English to few languages.
 
 NOTE: Text in the Image should be in English.
 
-Description:
+##Description:
 This app allows to capture a image(that contains the text) or import image from Gallery,
 now the text in the image is convert to normal text by OCR.
 By using Yandex convertor, we then translate the OCR coverted text into the desired Language.
@@ -17,7 +17,7 @@ In this App, you can convert any image containing Text in English to the mention
 NOTE: all the Text in the Image is converted to Text.
 
 
-Usage:
+##Usage:
 
 	1. In the first page, we have a option to Capture a Image or to Import the Image from Gallery. 
 	As per the need we can click on respective buttons.
