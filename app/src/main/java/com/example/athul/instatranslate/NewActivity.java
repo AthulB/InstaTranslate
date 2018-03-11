@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -37,6 +38,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class NewActivity extends AppCompatActivity {
     TextView textView;
     TextView textView1;
+    //
     String text,text1;
     Spinner spinner;
     String item;
@@ -54,9 +56,12 @@ public class NewActivity extends AppCompatActivity {
         text1 = text.replaceAll("\\n"," ");
         textView.setText(text1);
         spinner = (Spinner)findViewById(R.id.spinner2);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+        textView1.setMovementMethod(new ScrollingMovementMethod());
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,lang);
         spinner.setAdapter(adapter);
         textView1.setText("Select the language to be translated to....");
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

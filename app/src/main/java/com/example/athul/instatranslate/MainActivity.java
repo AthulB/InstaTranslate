@@ -149,14 +149,14 @@ public class MainActivity extends AppCompatActivity {
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
-        if (!textRecognizer.isOperational()) {
-            Toast.makeText(getApplicationContext(), "Couldn't load the Text", Toast.LENGTH_SHORT).show();
-        } else {
+//        if (!textRecognizer.isOperational()) {
+//            Toast.makeText(getApplicationContext(), "Couldn't load the Text", Toast.LENGTH_SHORT).show();
+//        } else {
             Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
             SparseArray<TextBlock> item = textRecognizer.detect(frame);
 
-            StringBuilder text = new StringBuilder();
+            StringBuilder text = new StringBuilder(1000);
 
             //for (int i = 0; i < item.size(); i++) {
 //                if(item.valueAt(0).equals('\n')) {
@@ -169,6 +169,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("data", text.toString());
             startActivity(intent);
 
-        }
+//        }
     }
 }
