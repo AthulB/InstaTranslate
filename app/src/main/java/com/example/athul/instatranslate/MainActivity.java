@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         mImageView = (ImageView) findViewById(R.id.imageView);
     }
 
@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int GALLERY_REQUEST = 2;
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -81,6 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void takeImage(View view) {
         dispatchTakePictureIntent();
+    }
+
+    
+    public void gallery(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent.createChooser(intent,"Select File"), GALLERY_REQUEST);
+//        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+//        photoPickerIntent.setType("image/*");
+//        startActivityForResult(photoPickerIntent,  REQUEST_TAKE_PHOTO);
     }
 
     private void setPic() {
@@ -140,7 +152,18 @@ public class MainActivity extends AppCompatActivity {
 //            Bitmap imageBitmap = (Bitmap) extras.get("data");
 //            mImageView.setImageBitmap(imageBitmap);
             setPic();
-
+        }
+        else if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
+            Uri selectedImageUri = data.getData();
+            mImageView.setImageURI(selectedImageUri);
+            mCurrentPhotoPath = selectedImageUri.getPath();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),selectedImageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+            //setPic();
         }
     }
 
@@ -171,4 +194,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        }
     }
+
+
 }
