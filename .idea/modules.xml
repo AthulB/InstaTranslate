@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/InstaTranslate.iml" filepath="$PROJECT_DIR$/InstaTranslate.iml" />
+      <module fileurl="file://C:\Users\HP\AndroidStudioProjects\Nav\InstaTranslate\InstaTranslate.iml" filepath="C:\Users\HP\AndroidStudioProjects\Nav\InstaTranslate\InstaTranslate.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\HP\AndroidStudioProjects\Nav\InstaTranslate\app\app.iml" filepath="C:\Users\HP\AndroidStudioProjects\Nav\InstaTranslate\app\app.iml" />
     </modules>
   </component>
 </project>
