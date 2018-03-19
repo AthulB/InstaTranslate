@@ -38,7 +38,7 @@ public class NewActivity extends AppCompatActivity {
     String text,text1;
     Spinner spinner;
     String item;
-    String [] lang = {"Bulgarian","Dutch","English","German","Greek","Gujarati","Hindi","Italian","Marathi","Malayalam","Russian","Spanish",};
+    String [] lang = {"Bengali","Gujarati","Hindi","Kannada","Marathi","Malayalam","Punjabi","Tamil","Telugu"};
     boolean connected = false;
 
     @Override
@@ -64,31 +64,25 @@ public class NewActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String Value= spinner.getSelectedItem().toString();
                 switch(Value){
-                    case "Bulgarian": item="bg";
+                    case "Bengali": item="bn";
                         break;
-                    case "Dutch": item="nl";
+                    case "Kannada": item="kn";
                         break;
-                    case "English": item="en";
+                    case "Punjabi": item="pa";
                         break;
-                    case "German": item="de";
+                    case "Tamil": item="ta";
                         break;
-                    case "Greek": item="el";
+                    case "Telugu": item="te";
                         break;
                     case "Gujarati": item="gu";
                         break;
                     case "Hindi": item="hi";
                         break;
-                    case "Italian": item="it";
-                        break;
                     case "Marathi": item="mr";
                         break;
                     case "Malayalam": item="ml";
                         break;
-                    case "Russian": item="ru";
-                        break;
-                    case "Spanish": item="es";
-                        break;
-                    default : item="bg";
+                    default : item="bn";
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
