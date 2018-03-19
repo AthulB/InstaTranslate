@@ -57,6 +57,7 @@ public class NewActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,lang);
         spinner.setAdapter(adapter);
         textView1.setText("Select the language to be translated to....");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -174,6 +175,12 @@ public class NewActivity extends AppCompatActivity {
                 textView1.setText("Please Connect to the Internet");
             }
         }
+
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
 }
